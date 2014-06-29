@@ -1,0 +1,4 @@
+.settings/
+.project
+.vagrant/
+bower_components/

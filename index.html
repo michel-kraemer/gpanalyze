@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:ng="http://angularjs.org" ng-app="main">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GPAnalyze</title>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/leaflet/dist/leaflet.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">GPAnalyze</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">New</a></li>
+                <li><a href="#">Open...</a></li>
+                <li><a href="#">Import...</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid height-100">
+      <div class="row height-100">
+        <div class="col-md-12 height-100">
+        
+          <div class="row height-100">
+            <div class="col-md-6 height-100">
+              <div class="row height-85">
+                <div class="col-md-12 height-100" ng-controller="GraphCtrl">
+                  <svg id="graph"></svg>
+                </div>
+              </div>
+              <div class="row height-15" ng-controller="OverviewCtrl">
+                <div class="col-md-4 height-100">
+                  <dl class="dl-horizontal">
+                    <dt>Total distance:</dt><dd>{{distTotal | number: 3}} km</dd>
+                    <dt>Distance (by car):</dt><dd>{{distCar | number: 3}} km</dd>
+                    <dt>Distance (on foot):</dt><dd>{{distPed | number: 3}} km</dd>
+                  </dl>
+                </div>
+                <div class="col-md-4 height-100">
+                  <dl class="dl-horizontal">
+                    <dt>Avg. speed (by car):</dt><dd>{{speedAvgCar | number: 1}} km/h</dd>
+                    <dt>Avg. speed (on foot):</dt><dd>{{speedAvgPed | number: 1}} km/h</dd>
+                    <dt>Max. speed (by car):</dt><dd>{{speedMaxCar | number: 1}} km/h</dd>
+                    <!--<dt>Max. speed (on foot):</dt><dd>{{speedMaxPed | number: 1}} km/h</dd>-->
+                  </dl>
+                </div>
+                <div class="col-md-4 height-100">
+                  <dl class="dl-horizontal">
+                    <dt>Total time:</dt><dd>{{timeTotal.hours | numberFixedLen: 2}}:{{timeTotal.minutes | numberFixedLen: 2}}:{{timeTotal.seconds | numberFixedLen: 2}}</dd>
+                    <dt>Time (by car):</dt><dd>{{timeCar.hours | numberFixedLen: 2}}:{{timeCar.minutes | numberFixedLen: 2}}:{{timeCar.seconds | numberFixedLen: 2}}</dd>
+                    <dt>Time (on foot):</dt><dd>{{timePed.hours | numberFixedLen: 2}}:{{timePed.minutes | numberFixedLen: 2}}:{{timePed.seconds | numberFixedLen: 2}}</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 height-100" ng-controller="MapCtrl">
+              <div id="mapContainer">
+                <div id="map"></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-dialog-service/dialogs.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/geolib/dist/geolib.min.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="bower_components/xdate/src/xdate.js"></script>
+    
+    <script src="graph.js"></script>
+    <script src="main.js"></script>
+    <script src="map.js"></script>
+    <script src="overview.js"></script>
+    <script src="selection.js"></script>
+  </body>
+</html>
